@@ -1,0 +1,12 @@
+import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+
+@Component
+@ConfigurationPropertiesBinding
+public class ZonesConverter implements Converter<String, Zones> {
+    @Override
+    public Zones convert(String source) {
+        return Zones.valueOf(source.trim().toUpperCase());
+    }
+}

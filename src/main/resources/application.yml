@@ -1,0 +1,48 @@
+fr24:
+  base-urls:
+    api: "api.flightradar24.com/common/v1"
+    cdn: "cdn.flightradar24.com"
+    web: "www.flightradar24.com"
+    data-live: "data-live.flightradar24.com"
+    data-cloud: "data-cloud.flightradar24.com"
+
+  endpoints:
+    user-login: "/user/login"
+    user-logout: "/user/logout"
+    search-data: "/v1/search/web/find"
+    real-time-flight-tracker-data: "/zones/fcgi/feed.js"
+    flight-data: "/clickhandler/"
+    historical-data: "/download/"
+    api-airport-data: "/airport.json"
+    airport-data: "/airports/traffic-stats/"
+    airports-data: "/data/airports"
+    airlines-data: "/data/airlines"
+    volcanic-eruption-data: "/weather/volcanic"
+    most-tracked: "/flights/most-tracked"
+    airport-disruptions: "/webapi/v1/airport-disruptions"
+    bookmarks: "/webapi/v1/bookmarks"
+    country-flag: "/static/images/data/flags-small/{countryCode}.svg"
+    airline-logo: "/assets/airlines/logotypes/{iata}_{icao}.png"
+    alternative-airline-logo: "/static/images/data/operators/{icao}_logo0.png"
+
+  headers:
+    default:
+      accept-encoding: "gzip, br"
+      accept-language: "es-ES,en;q=0.8"
+      cache-control: "max-age=0"
+      origin: "https://www.flightradar24.com"
+      referer: "https://www.flightradar24.com/"
+      sec-fetch-dest: "empty"
+      sec-fetch-mode: "cors"
+      sec-fetch-site: "same-site"
+      user-agent: "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+    json:
+      accept: "application/json"
+    image:
+      accept: "image/gif, image/jpg, image/jpeg, image/png"
+    html:
+      accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+
+  spring:
+    config:
+      import: "classpath:static-zones.yml"

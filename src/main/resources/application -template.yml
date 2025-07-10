@@ -1,0 +1,48 @@
+# -----------------------------------------------------------------------------
+# This is a template configuration file.
+# Sensitive information such as real URLs, endpoints and keys have been removed.
+# Please replace empty strings with your own valid data before running the application.
+#
+# Remember to respect the terms of use of any external services you integrate with.
+# Avoid committing sensitive information to public repositories.
+# -----------------------------------------------------------------------------
+
+fr24:
+  base-urls:
+    api: ""
+    cdn: ""
+    web: ""
+    data-live: ""
+    data-cloud: ""
+
+  endpoints:
+    user-login: ""
+    user-logout: ""
+    search-data: ""
+    real-time-flight-tracker-data: ""
+    flight-data: ""
+    historical-data: ""
+    api-airport-data: ""
+    airport-data: ""
+    airports-data: ""
+    airlines-data: ""
+    volcanic-eruption-data: ""
+    most-tracked: ""
+    airport-disruptions: ""
+    bookmarks: ""
+    country-flag: ""
+    airline-logo: ""
+    alternative-airline-logo: ""
+
+  headers:
+    default:
+
+    json:
+      
+    image:
+      
+    html:
+
+  spring:
+    config:
+      import: "classpath:static-zones.yml"
