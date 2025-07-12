@@ -1,0 +1,194 @@
+{
+  "europe": {
+    "maxLatitude": 72.57,
+    "minLatitude": 33.57,
+    "minLongitude": -16.96,
+    "maxLongitude": 53.05
+  },
+  "poland": {
+    "maxLatitude": 56.86,
+    "minLatitude": 48.22,
+    "minLongitude": 11.06,
+    "maxLongitude": 28.26
+  },
+  "germany": {
+    "maxLatitude": 57.92,
+    "minLatitude": 45.81,
+    "minLongitude": 1.81,
+    "maxLongitude": 16.83
+  },
+  "uk": {
+    "maxLatitude": 62.61,
+    "minLatitude": 49.71,
+    "minLongitude": -13.07,
+    "maxLongitude": 3.46
+  },
+  "london": {
+    "maxLatitude": 53.06,
+    "minLatitude": 50.07,
+    "minLongitude": -2.87,
+    "maxLongitude": 3.26
+  },
+  "ireland": {
+    "maxLatitude": 56.22,
+    "minLatitude": 50.91,
+    "minLongitude": -11.71,
+    "maxLongitude": -4.4
+  },
+  "spain": {
+    "maxLatitude": 44.36,
+    "minLatitude": 35.76,
+    "minLongitude": -11.06,
+    "maxLongitude": 4.04
+  },
+  "france": {
+    "maxLatitude": 51.07,
+    "minLatitude": 42.17,
+    "minLongitude": -5.18,
+    "maxLongitude": 8.9
+  },
+  "ceur": {
+    "maxLatitude": 51.39,
+    "minLatitude": 39.72,
+    "minLongitude": 11.25,
+    "maxLongitude": 32.55
+  },
+  "scandinavia": {
+    "maxLatitude": 72.12,
+    "minLatitude": 53.82,
+    "minLongitude": -0.73,
+    "maxLongitude": 40.67
+  },
+  "italy": {
+    "maxLatitude": 47.67,
+    "minLatitude": 36.27,
+    "minLongitude": 5.26,
+    "maxLongitude": 20.64
+  },
+  "northamerica": {
+    "maxLatitude": 75,
+    "minLatitude": 3,
+    "minLongitude": -180,
+    "maxLongitude": -52
+  },
+  "na_n": {
+    "maxLatitude": 72.82,
+    "minLatitude": 41.92,
+    "minLongitude": -177.97,
+    "maxLongitude": -52.48
+  }, 
+  "na_c": {
+    "maxLatitude": 54.66,
+    "minLatitude": 22.16,
+    "minLongitude": -134.68,
+    "maxLongitude": -56.91
+  }, 
+  "na_cny": {
+    "maxLatitude": 45.06,
+    "minLatitude": 35.96,
+    "minLongitude": -83.69,
+    "maxLongitude": -64.29
+  }, 
+  "na_cla": {
+    "maxLatitude": 37.91,
+    "minLatitude": 30.21,
+    "minLongitude": -126.12,
+    "maxLongitude": -110.02
+  }, 
+  "na_cat": {
+    "maxLatitude": 35.86,
+    "minLatitude": 22.56,
+    "minLongitude": -92.61,
+    "maxLongitude": -71.19
+  }, 
+  "na_cse": {
+    "maxLatitude": 49.12,
+    "minLatitude": 42.97,
+    "minLongitude": -126.15,
+    "maxLongitude": -111.92
+  }, 
+  "na_nw": {
+    "maxLatitude": 54.12,
+    "minLatitude": 38.32,
+    "minLongitude": -134.13,
+    "maxLongitude": -96.75
+  }, 
+  "na_ne": {
+    "maxLatitude": 53.72,
+    "minLatitude": 38.22,
+    "minLongitude": -98.76,
+    "maxLongitude": -57.36
+  }, 
+  "na_sw": {
+    "maxLatitude": 38.92,
+    "minLatitude": 22.62,
+    "minLongitude": -133.98,
+    "maxLongitude": -96.75
+  }, 
+  "na_se": {
+    "maxLatitude": 38.52,
+    "minLatitude": 22.52,
+    "minLongitude": -98.62,
+    "maxLongitude": -57.36
+  }, 
+  "na_cc": {
+    "maxLatitude": 45.92,
+    "minLatitude": 27.62,
+    "minLongitude": -116.88,
+    "maxLongitude": -75.91
+  }, 
+  "na_s": {
+    "maxLatitude": 41.92,
+    "minLatitude": 3.82,
+    "minLongitude": -177.83,
+    "maxLongitude": -52.48
+  }, 
+  "southamerica": {
+    "maxLatitude": 16,
+    "minLatitude": -57,
+    "minLongitude": -96,
+    "maxLongitude": -31
+  },
+  "oceania": {
+    "maxLatitude": 19.62,
+    "minLatitude": -55.08,
+    "minLongitude": 88.4,
+    "maxLongitude": 180
+  },
+  "asia": {
+    "maxLatitude": 79.98,
+    "minLatitude": 12.48,
+    "minLongitude": 40.91,
+    "maxLongitude": 179.77
+  },
+  "japan": {
+    "maxLatitude": 60.38,
+    "minLatitude": 22.58,
+    "minLongitude": 113.5,
+    "maxLongitude": 176.47
+  },
+  "africa": {
+    "maxLatitude": 39,
+    "minLatitude": -39,
+    "minLongitude": -29,
+    "maxLongitude": 55
+  },
+  "atlantic": {
+    "maxLatitude": 52.62,
+    "minLatitude": 15.62,
+    "minLongitude": -50.9,
+    "maxLongitude": -4.75
+  },
+  "maldives": {
+    "maxLatitude": 10.72,
+    "minLatitude": -6.08,
+    "minLongitude": 63.1,
+    "maxLongitude": 86.53
+  },
+  "northatlantic": {
+    "maxLatitude": 82.62,
+    "minLatitude": 59.02,
+    "minLongitude": -84.53,
+    "maxLongitude": 4.45
+  }
+}

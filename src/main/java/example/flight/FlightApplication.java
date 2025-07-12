@@ -2,12 +2,10 @@ package example.flight;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-
-import example.flight.config.StaticZonesProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
-@EnableConfigurationProperties(StaticZonesProperties.class)
+@ConfigurationPropertiesScan
 public class FlightApplication {
 
 	public static void main(String[] args) {

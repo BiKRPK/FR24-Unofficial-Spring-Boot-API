@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import example.flight.client.FlightClient;
-import example.flight.config.StaticZonesProperties;
+import example.flight.config.Zones;
+import example.flight.model.geo.Zone;
 import example.flight.model.geo.Bounds;
 import example.flight.model.out.Flight;
+import example.flight.model.out.TrackedFlight;
 import example.flight.service.FlightService;
 import reactor.core.publisher.Mono;
 
@@ -18,33 +19,38 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/live-flights")
 public class FlightController {
 
-    private final FlightClient flightClient;
     private final FlightService flightService;
-    private final StaticZonesProperties staticZonesProperties;
+    private final Zones zones;
 
-    public FlightController(FlightClient flightClient, FlightService  flightService, StaticZonesProperties staticZonesProperties) {
-         this.flightClient = flightClient;
+    public FlightController(
+            FlightService  flightService,
+            Zones zones
+    ) {
          this.flightService = flightService;
-         this.staticZonesProperties = staticZonesProperties;
+         this.zones = zones;
     }
 
     @GetMapping("/by-bounds")
     public Mono<List<Flight>> getFlightsByBounds(
-            @RequestParam double north,
-            @RequestParam double south,
-            @RequestParam double west,
-            @RequestParam double east
+            @RequestParam(required = false, defaultValue = "100") int limit,
+            @RequestParam double maxLatitude,
+            @RequestParam double minLatitude,
+            @RequestParam double minLongitude,
+            @RequestParam double maxLongitude
     ) {
-        Bounds bounds = new Bounds(north, south, west, east);
-        return flightClient.getFlights(bounds).map(flightService::parseFlights);
+        Bounds bounds = new Bounds(maxLatitude, minLatitude, minLongitude, maxLongitude);
+        return flightService.getFlights(bounds, limit);
     }
 
     @GetMapping("/spain")
-    public Mono<List<Flight>> getFlightsInSpain() {
-        //Bounds spainBounds = staticZonesProperties.getBoundsForZone(Zones.SPAIN);
-        Bounds spainBounds = new Bounds(44.36, -11.06, 35.76, 4.04);
-        return flightClient.getFlights(spainBounds)
-                .map(flightService::parseFlights);
+    public Mono<List<Flight>> getFlightsInSpain(@RequestParam(required = false, defaultValue = "100") int limit) {
+        Bounds spainBounds = zones.getBoundsForZone(Zone.SPAIN);
+        return flightService.getFlights(spainBounds, limit);
+    }
+
+    @GetMapping("/most-tracked")
+    public Mono<List<TrackedFlight>> getMostTrackedFlights() {
+        return flightService.getMostTrackedFlights();
     }
     
 }
