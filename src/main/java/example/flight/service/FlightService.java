@@ -94,7 +94,7 @@ public class FlightService {
         int position = 1;
         for (JsonNode flightNode : data) {
             
-            String callsign = flightNode.path("callsign").asText();
+            String callsign = flightNode.path("callsign").asText().trim();
             int trackers = flightNode.path("clicks").asInt();
             String model = flightNode.path("model").asText();
             String fromIata = flightNode.path("from_iata").asText();
