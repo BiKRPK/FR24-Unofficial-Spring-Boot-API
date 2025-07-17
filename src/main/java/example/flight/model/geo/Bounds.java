@@ -1,18 +1,18 @@
 package example.flight.model.geo;
 
-public record Bounds(double maxLatitude, double minLatitude, double minLongitude,  double maxLongitude)  {
+public record Bounds(double north, double south, double west,  double east)  {
 
     public String toQueryParam() {
-        return maxLatitude + "," + minLatitude + "," + minLongitude + "," + maxLongitude;
+        return north + "," + south + "," + west + "," + east;
     }
 
     @Override
     public String toString() {
         return "Bounds{" +
-                "maxLatitude=" + maxLatitude +
-                ", minLatitude=" + minLatitude +
-                ", minLongitude=" + minLongitude +
-                ", maxLongitude=" + maxLongitude +
+                "north=" + north +
+                ", south=" + south +
+                ", west=" + west +
+                ", east=" + east +
                 '}';
     }
 }

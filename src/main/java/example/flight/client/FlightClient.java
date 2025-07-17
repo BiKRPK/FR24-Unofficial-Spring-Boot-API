@@ -2,12 +2,14 @@ package example.flight.client;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+
 import example.flight.config.BaseUrlProperties;
 import example.flight.config.EndpointProperties;
 import example.flight.config.HeadersProperties;
 import example.flight.model.geo.Bounds;
+import example.flight.model.in.LiveFlightsFR24;
+import example.flight.model.in.MostTrackedFR24;
 import reactor.core.publisher.Mono;
-
 
 @Component
 public class FlightClient {    
@@ -31,7 +33,7 @@ public class FlightClient {
         this.headersProperties = headersProperties;
     }
 
-    public Mono<String> getFlightsFR24(Bounds bounds, int limit) {
+    public Mono<LiveFlightsFR24> getFlightsFR24(Bounds bounds, int limit) {
         return webClient.get()
             .uri(uriBuilder -> uriBuilder
                 .scheme("https")
@@ -54,10 +56,10 @@ public class FlightClient {
                 .build())
             .headers(httpHeaders -> httpHeaders.setAll(headersProperties.getDefault()))
             .retrieve()
-            .bodyToMono(String.class);
+            .bodyToMono(LiveFlightsFR24.class);
     }
 
-    public Mono<String> getMostTrackedFlightsFR24() {
+    public Mono<MostTrackedFR24> getMostTrackedFlightsFR24() {
         return webClient.get()
             .uri(uriBuilder -> uriBuilder
                 .scheme("https")
@@ -66,6 +68,6 @@ public class FlightClient {
                 .build())
             .headers(httpHeaders -> httpHeaders.setAll(headersProperties.getDefault()))
             .retrieve()
-            .bodyToMono(String.class);
+            .bodyToMono(MostTrackedFR24.class);
     }
 }

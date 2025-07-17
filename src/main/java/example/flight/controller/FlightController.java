@@ -1,6 +1,8 @@
 package example.flight.controller;
 
+import java.util.Arrays;
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import example.flight.config.Zones;
-import example.flight.model.geo.Zone;
+
+import example.flight.config.Countries;
 import example.flight.model.geo.Bounds;
+import example.flight.model.geo.IsoCountryCode;
 import example.flight.model.out.Flight;
 import example.flight.model.out.TrackedFlight;
 import example.flight.service.FlightService;
@@ -21,11 +24,11 @@ import reactor.core.publisher.Mono;
 public class FlightController {
 
     private final FlightService flightService;
-    private final Zones zones;
+    private final Countries zones;
 
     public FlightController(
             FlightService  flightService,
-            Zones zones
+            Countries zones
     ) {
          this.flightService = flightService;
          this.zones = zones;
@@ -34,12 +37,12 @@ public class FlightController {
     @GetMapping("/by-bounds")
     public Mono<List<Flight>> getFlightsByBounds(
             @RequestParam(required = false, defaultValue = "100") int limit,
-            @RequestParam double maxLatitude,
-            @RequestParam double minLatitude,
-            @RequestParam double minLongitude,
-            @RequestParam double maxLongitude
+            @RequestParam double north,
+            @RequestParam double south,
+            @RequestParam double west,
+            @RequestParam double east
     ) {
-        Bounds bounds = new Bounds(maxLatitude, minLatitude, minLongitude, maxLongitude);
+        Bounds bounds = new Bounds(north, south, west, east);
         return flightService.getFlights(bounds, limit);
     }
 
@@ -48,19 +51,19 @@ public class FlightController {
             @PathVariable String country,
             @RequestParam(required = false, defaultValue = "100") int limit
     ) {
-        Zone zone = null;
+        IsoCountryCode isoCountryCode;
         try {
-            zone = Zone.valueOf(country.toUpperCase());
+            isoCountryCode = IsoCountryCode.valueOf(country.toUpperCase());
         } catch (IllegalArgumentException e) {
             return Mono.error(
                 new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,
-                    "Unsuported country: " + country + " - must be one of " + Zone.values()
+                    "Unsuported ISO 3166-1 alpha-2 code: " + country + " - must be one of " + Arrays.toString(IsoCountryCode.values())
                 )
             );
         }
 
-        Bounds countryBounds = zones.getBoundsForZone(zone);
+        Bounds countryBounds = zones.getBoundsForCountry(isoCountryCode);
         return flightService.getFlights(countryBounds, limit);
     }
 
