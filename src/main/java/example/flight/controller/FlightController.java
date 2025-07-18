@@ -1,14 +1,19 @@
 package example.flight.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
 import example.flight.config.Countries;
@@ -70,6 +75,21 @@ public class FlightController {
     @GetMapping("/most-tracked")
     public Mono<List<TrackedFlight>> getMostTrackedFlights() {
         return flightService.getMostTrackedFlights();
+    }
+
+    //TO DO: improve error handling logic
+    @RestControllerAdvice
+    public class GlobalExceptionHandler {
+
+        @ExceptionHandler(ResponseStatusException.class)
+        public ResponseEntity<Map<String, Object>> handleResponseStatusException(ResponseStatusException ex) {
+            Map<String, Object> errorAttributes = new HashMap<>();
+            errorAttributes.put("status", ex.getStatusCode().value());
+            errorAttributes.put("error", ex.getReason());
+            return ResponseEntity
+                    .status(ex.getStatusCode())
+                    .body(errorAttributes);
+        }
     }
     
 }

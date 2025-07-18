@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record MostTrackedFR24(
+public record MostTrackedFlightsFR24(
         List<TrackedFlightFR24> data,
         @JsonProperty("update_time")
         long updateTime,

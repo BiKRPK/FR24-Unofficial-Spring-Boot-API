@@ -42,7 +42,3 @@ fr24:
     image:
       
     html:
-
-  spring:
-    config:
-      import: "classpath:static-zones.yml"

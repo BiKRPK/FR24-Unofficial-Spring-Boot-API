@@ -8,7 +8,7 @@ import example.flight.config.EndpointProperties;
 import example.flight.config.HeadersProperties;
 import example.flight.model.geo.Bounds;
 import example.flight.model.in.LiveFlightsFR24;
-import example.flight.model.in.MostTrackedFR24;
+import example.flight.model.in.MostTrackedFlightsFR24;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -59,7 +59,7 @@ public class FlightClient {
             .bodyToMono(LiveFlightsFR24.class);
     }
 
-    public Mono<MostTrackedFR24> getMostTrackedFlightsFR24() {
+    public Mono<MostTrackedFlightsFR24> getMostTrackedFlightsFR24() {
         return webClient.get()
             .uri(uriBuilder -> uriBuilder
                 .scheme("https")
@@ -68,6 +68,6 @@ public class FlightClient {
                 .build())
             .headers(httpHeaders -> httpHeaders.setAll(headersProperties.getDefault()))
             .retrieve()
-            .bodyToMono(MostTrackedFR24.class);
+            .bodyToMono(MostTrackedFlightsFR24.class);
     }
 }
