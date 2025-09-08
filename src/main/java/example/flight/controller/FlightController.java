@@ -18,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import example.flight.config.Countries;
 import example.flight.model.geo.Bounds;
+import example.flight.model.geo.Circle;
 import example.flight.model.geo.IsoCountryCode;
 import example.flight.model.out.Flight;
 import example.flight.model.out.TrackedFlight;
@@ -49,6 +50,17 @@ public class FlightController {
     ) {
         Bounds bounds = new Bounds(north, south, west, east);
         return flightService.getFlights(bounds, limit);
+    }
+
+    @GetMapping("/by-radius")
+    public Mono<List<Flight>> getFlightsByRadius(
+            @RequestParam(required = false, defaultValue = "100") int limit,
+            @RequestParam double latitude,
+            @RequestParam double longitude,
+            @RequestParam double radiusInKm
+    ) {
+        Circle circle = new Circle(latitude, longitude, radiusInKm);
+        return flightService.getFlights(circle, limit);
     }
 
     @GetMapping("/{country}")

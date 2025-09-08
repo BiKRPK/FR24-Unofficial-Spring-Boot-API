@@ -1,6 +1,5 @@
 package example.flight.client;
 
-import java.util.Arrays;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
@@ -9,7 +8,6 @@ import example.flight.config.BaseUrlProperties;
 import example.flight.config.EndpointProperties;
 import example.flight.config.HeadersProperties;
 import example.flight.model.in.AirportTrafficStatsFR24;
-import example.flight.model.in.MostTrackedFlightsFR24;
 import example.flight.model.in.MostTrafficAirportFR24;
 import reactor.core.publisher.Mono;
 

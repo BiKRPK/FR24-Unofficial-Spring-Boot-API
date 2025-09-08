@@ -9,6 +9,7 @@ import example.flight.client.FlightClient;
 import example.flight.mapper.LiveFlightMapper;
 import example.flight.mapper.TrackedFlightMapper;
 import example.flight.model.geo.Bounds;
+import example.flight.model.geo.Circle;
 import example.flight.model.out.Flight;
 import example.flight.model.out.TrackedFlight;
 import reactor.core.publisher.Mono;
@@ -36,6 +37,14 @@ public class FlightService {
     public Mono<List<Flight>> getFlights(Bounds bounds, int limit) {
         return flightClient.getFlightsFR24(bounds, limit)
                 .map(liveFlightsFR24 -> liveFlightMapper.toFlight(liveFlightsFR24));
+    }
+
+    public Mono<List<Flight>> getFlights(Circle circle, int limit) {
+        return flightClient.getFlightsFR24(circle.toBounds(), limit)
+                .map(liveFlightsFR24 -> liveFlightMapper.toFlight(liveFlightsFR24))
+                .map(flights -> flights.stream()
+                    .filter(circle::isFlightInCircle)
+                    .toList());
     }
 
     public Mono<List<TrackedFlight>> getMostTrackedFlights() {

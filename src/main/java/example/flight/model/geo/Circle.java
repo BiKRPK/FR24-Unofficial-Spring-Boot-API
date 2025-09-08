@@ -2,21 +2,20 @@ package example.flight.model.geo;
 
 import example.flight.model.out.Flight;
 
-public record Circle (double latitude, double longitude, double radiusinKm) {
+public record Circle (double latitude, double longitude, double radiusInKm) {
 
     public Bounds toBounds() {
-        Bounds bounds = new Bounds(
-                latitude + (radiusinKm / 111.32),
-                latitude - (radiusinKm / 111.32),
-                longitude - (radiusinKm / (111.32 * Math.cos(Math.toRadians(latitude)))),
-                longitude + (radiusinKm / (111.32 * Math.cos(Math.toRadians(latitude))))
-        );
-        return bounds;
+        double north = Math.round((latitude + (radiusInKm / 111.32)) * 100.0) / 100.0;
+        double south = Math.round((latitude - (radiusInKm / 111.32)) * 100.0) / 100.0;
+        double west = Math.round((longitude - (radiusInKm / (111.32 * Math.cos(Math.toRadians(latitude))))) * 100.0) / 100.0;
+        double east = Math.round((longitude + (radiusInKm / (111.32 * Math.cos(Math.toRadians(latitude))))) * 100.0) / 100.0;
+
+        return new Bounds(north, south, west, east);
     }
 
     public boolean isFlightInCircle(Flight flight) {
         double distance = calculateDistance(latitude, longitude, flight.getLatitude(), flight.getLongitude());
-        return distance <= radiusinKm;
+        return distance <= radiusInKm;
     }
 
     public double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
@@ -34,3 +33,4 @@ public record Circle (double latitude, double longitude, double radiusinKm) {
         return distance;
     }
 }
+
