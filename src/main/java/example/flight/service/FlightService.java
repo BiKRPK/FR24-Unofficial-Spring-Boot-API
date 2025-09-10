@@ -1,5 +1,6 @@
 package example.flight.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -40,10 +41,12 @@ public class FlightService {
     }
 
     public Mono<List<Flight>> getFlights(Circle circle, int limit) {
-        return flightClient.getFlightsFR24(circle.toBounds(), limit)
+        return flightClient.getFlightsFR24(circle.toBounds(), limit * 2)
                 .map(liveFlightsFR24 -> liveFlightMapper.toFlight(liveFlightsFR24))
                 .map(flights -> flights.stream()
                     .filter(circle::isFlightInCircle)
+                    .sorted(Comparator.comparingDouble(circle::calculateDistance))
+                    .limit(limit)
                     .toList());
     }
 
