@@ -1,5 +1,5 @@
 package example.flight.model.out;
 
-record Aircraft(String callSign, String type, String registration, Operator operator) {
+public record Aircraft(String callsign, String aircraft, String type, String modeS, String code, String registration) {
     
 }

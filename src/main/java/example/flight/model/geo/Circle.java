@@ -29,7 +29,7 @@ public record Circle (double latitude, double longitude, double radiusInKm) {
 
         double x = (lon2Rad - lon1Rad) * Math.cos((lat1Rad + lat2Rad) / 2);
         double y = (lat2Rad - lat1Rad);
-        double distance = Math.sqrt(x * x + y * y) * EARTH_RADIUS;
+        double distance = Math.round(Math.sqrt(x * x + y * y) * EARTH_RADIUS * 100.0) / 100.0;
 
         return distance;
     }
